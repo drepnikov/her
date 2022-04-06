@@ -1,0 +1,7 @@
+body {
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    background: rgb(251,198,255);
+    background: linear-gradient(158deg, rgba(251,198,255,1) 0%, rgba(117,45,129,1) 100%);
+}
