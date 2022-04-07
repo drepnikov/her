@@ -1,9 +1,27 @@
 import * as React from "react";
+import css from "./List.module.scss";
 
-interface IListProps {}
+export interface ITodo {
+  value: string;
+  id: number;
+  completed: boolean;
+}
 
-const List: React.FC<IListProps> = () => {
-  return <div>Список</div>;
+interface IListProps {
+  items: ITodo[];
+  edit: boolean;
+}
+
+const List: React.FC<IListProps> = ({ items }) => {
+  return (
+    <div className={css.container}>
+      <ul>
+        {items.map((todo) => {
+          return <li key={todo.id}>{todo.value}</li>;
+        })}
+      </ul>
+    </div>
+  );
 };
 
 export { List };

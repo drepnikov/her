@@ -1,13 +1,37 @@
 import * as React from "react";
 import css from "./Tabs.module.scss";
+import { useCallback } from "react";
 
-interface ITabsProps {}
+export enum TabsEnum {
+  current = "current",
+  archive = "archive",
+}
 
-const Tabs: React.FC<ITabsProps> = () => {
+interface ITabsProps {
+  selectedTab: TabsEnum;
+  onChange: (val: TabsEnum) => void;
+}
+
+const Tabs: React.FC<ITabsProps> = ({ selectedTab, onChange }) => {
+  let currentTabStyles = `${css.tab} ${css.currentTab}`;
+  let archiveTabStyles = `${css.tab} ${css.archiveTab}`;
+
+  const onClickCurrentTabHandler = useCallback(() => {
+    onChange(TabsEnum.current);
+  }, []);
+  const onClickArchiveTabHandler = useCallback(() => {
+    onChange(TabsEnum.archive);
+  }, []);
+
+  if (selectedTab === TabsEnum.archive)
+    archiveTabStyles += " " + css.selectedTab;
+  if (selectedTab === TabsEnum.current)
+    currentTabStyles += " " + css.selectedTab;
+
   return (
     <div className={css.container}>
       <ul>
-        <li className={css.current}>
+        <li onClick={onClickCurrentTabHandler} className={currentTabStyles}>
           <svg
             width="40px"
             height="40px"
@@ -23,7 +47,7 @@ const Tabs: React.FC<ITabsProps> = () => {
             />
           </svg>
         </li>
-        <li>
+        <li onClick={onClickArchiveTabHandler} className={archiveTabStyles}>
           <svg
             width="45px"
             height="45px"
