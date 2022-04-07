@@ -38,6 +38,66 @@ const mock: ITodo[] = [
     completed: false,
     id: 11,
   },
+  {
+    value: "Потрогать redux-toolkit",
+    id: 1,
+    completed: false,
+  },
+  {
+    value: "Привет мир",
+    completed: false,
+    id: 6,
+  },
+  {
+    value: "123123",
+    completed: true,
+    id: 7,
+  },
+  {
+    value: "123",
+    completed: true,
+    id: 9,
+  },
+  {
+    value: "Привет!",
+    completed: true,
+    id: 10,
+  },
+  {
+    value: "12321",
+    completed: false,
+    id: 11,
+  },
+  {
+    value: "Потрогать redux-toolkit",
+    id: 1,
+    completed: false,
+  },
+  {
+    value: "Привет мир",
+    completed: false,
+    id: 6,
+  },
+  {
+    value: "123123",
+    completed: true,
+    id: 7,
+  },
+  {
+    value: "123",
+    completed: true,
+    id: 9,
+  },
+  {
+    value: "Привет!",
+    completed: true,
+    id: 10,
+  },
+  {
+    value: "12321",
+    completed: false,
+    id: 11,
+  },
 ];
 
 const App: React.FC<IAppProps> = () => {

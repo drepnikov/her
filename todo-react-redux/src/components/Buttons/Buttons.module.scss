@@ -1,0 +1,26 @@
+.container {
+  position: relative;
+}
+
+.addTodoBtn {
+  width: 70px;
+  height: 70px;
+
+  position: absolute;
+
+  border: none;
+  cursor: pointer;
+  background-color: #fdb973;
+  border-radius: 50%;
+
+  font-weight: bold;
+  color: #f3f3f3;
+  font-size: 50px;
+
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

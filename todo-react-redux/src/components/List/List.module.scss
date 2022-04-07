@@ -1,3 +1,9 @@
 .container {
   padding: 20px 30px;
+  height: 45vh;
+  overflow-y: scroll;
+}
+
+.checkedItem {
+  text-decoration: line-through;
 }

@@ -17,7 +17,14 @@ const List: React.FC<IListProps> = ({ items }) => {
     <div className={css.container}>
       <ul>
         {items.map((todo) => {
-          return <li key={todo.id}>{todo.value}</li>;
+          return (
+            <li className={todo.completed ? css.checkedItem : ""} key={todo.id}>
+              <label>
+                <input type={"checkbox"} checked={todo.completed} />
+                <span>{todo.value}</span>
+              </label>
+            </li>
+          );
         })}
       </ul>
     </div>
