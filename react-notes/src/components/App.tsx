@@ -1,7 +1,7 @@
 import React from "react";
 import css from "./App.module.scss";
 import { Navbar } from "src/components/Navbar/Navbar";
-import { AddNote } from "src/components/AddNote/AddNote";
+import { NoteList } from "src/components/NoteList/NoteList";
 
 const App = () => {
   return (
@@ -10,7 +10,7 @@ const App = () => {
         <Navbar />
       </header>
       <main className={css.mainContent}>
-        <AddNote />
+        <NoteList />
       </main>
     </div>
   );
