@@ -22,6 +22,7 @@
   display: inline-block;
   width: 24px;
   height: 24px;
+  box-sizing: content-box;
 
   &:hover {
     background-color: rgba(232, 234, 237, 0.08);

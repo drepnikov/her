@@ -1,4 +1,13 @@
+@import "src/css/theme";
+
 .app {
   min-height: 100vh;
   background-color: #202124;
+  color: $text-color
+}
+
+.mainContent {
+  padding-top: 25px;
+  display: flex;
+  justify-content: center;
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import css from "./App.module.scss";
 import { Navbar } from "src/components/Navbar/Navbar";
+import { AddNote } from "src/components/AddNote/AddNote";
 
 const App = () => {
   return (
@@ -8,6 +9,9 @@ const App = () => {
       <header>
         <Navbar />
       </header>
+      <main className={css.mainContent}>
+        <AddNote />
+      </main>
     </div>
   );
 };
