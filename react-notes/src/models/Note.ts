@@ -1,4 +1,5 @@
 export interface INote {
-  value: string;
+  title: string;
+  content: string;
   fixed: boolean;
 }
