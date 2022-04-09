@@ -3,20 +3,34 @@ import { AddNote } from "src/components/NoteList/AddNote/AddNote";
 import { INote } from "src/models/Note";
 import { NoteContainer } from "src/components/NoteList/NoteContainer/NoteContainer";
 import css from "./NoteList.module.scss";
+import { useAppContext } from "src/store/store";
+import { useEffect } from "react";
+import { addNote } from "src/store/actions";
 
-interface INoteListProps {
-  items: INote[];
-}
+interface INoteListProps {}
 
-const NoteList: React.FC<INoteListProps> = ({ items }) => {
-  const notes: { fixed: INote[]; other: INote[] } = {
+const NoteList: React.FC<INoteListProps> = () => {
+  const {
+    state: { notes },
+    dispatch,
+  } = useAppContext();
+
+  const groupedNotes: { fixed: INote[]; other: INote[] } = {
     fixed: [],
     other: [],
   };
 
-  items.forEach((item) => {
-    item.fixed ? notes.fixed.push(item) : notes.other.push(item);
+  notes.forEach((item) => {
+    item.fixed ? groupedNotes.fixed.push(item) : groupedNotes.other.push(item);
   });
+
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(
+        addNote({ fixed: true, content: "через редюсер", title: "Добавили" })
+      );
+    }, 3000);
+  }, []);
 
   return (
     <div className={css.noteListContainer}>
@@ -24,11 +38,11 @@ const NoteList: React.FC<INoteListProps> = ({ items }) => {
         <AddNote />
       </div>
       <div className={css.noteList}>
-        {notes.fixed.length > 0 && (
+        {groupedNotes.fixed.length > 0 && (
           <div className={css.noteListFixedCategory}>
             <div>Закрепленные</div>
 
-            {notes.fixed.map((note) => {
+            {groupedNotes.fixed.map((note) => {
               return (
                 <div className={css.noteListItem}>
                   <NoteContainer>
@@ -41,9 +55,9 @@ const NoteList: React.FC<INoteListProps> = ({ items }) => {
           </div>
         )}
         <div>
-          {notes.fixed.length > 0 && <div>Другие</div>}
+          {groupedNotes.fixed.length > 0 && <div>Другие</div>}
 
-          {notes.other.map((note) => {
+          {groupedNotes.other.map((note) => {
             return (
               <div className={css.noteListItem}>
                 <NoteContainer>
