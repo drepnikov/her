@@ -59,7 +59,7 @@ const appReducer = (
         (item) => item.id === payload.id
       );
 
-      if (targetIndex) {
+      if (targetIndex !== -1) {
         const copiedNotes = [...state.notes];
 
         copiedNotes.splice(targetIndex, 1, payload);

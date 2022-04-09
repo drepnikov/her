@@ -47,7 +47,7 @@ const NoteList: React.FC<INoteListProps> = () => {
             <div>Закрепленные</div>
 
             {groupedNotes.fixed.map((note) => (
-              <div className={css.noteListItem}>
+              <div key={note.id} className={css.noteListItem}>
                 <Note item={note} />
               </div>
             ))}
@@ -57,7 +57,7 @@ const NoteList: React.FC<INoteListProps> = () => {
           {groupedNotes.fixed.length > 0 && <div>Другие</div>}
 
           {groupedNotes.other.map((note) => (
-            <div className={css.noteListItem}>
+            <div key={note.id} className={css.noteListItem}>
               <Note item={note} />
             </div>
           ))}
