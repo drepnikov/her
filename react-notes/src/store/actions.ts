@@ -21,4 +21,11 @@ const updateNote: Action<INote> = (note) => {
   };
 };
 
-export { addNote, updateNote };
+const deleteNote: Action<string> = (id) => {
+  return {
+    type: "DELETE",
+    payload: id,
+  };
+};
+
+export { addNote, updateNote, deleteNote };

@@ -71,6 +71,12 @@ const appReducer = (
       } else {
         return state;
       }
+
+    case "DELETE":
+      return {
+        ...state,
+        notes: state.notes.filter((item) => item.id !== payload),
+      };
     default:
       return state;
   }
