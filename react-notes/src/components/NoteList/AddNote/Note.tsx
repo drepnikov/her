@@ -6,6 +6,7 @@ import css from "src/components/NoteList/NoteList.module.scss";
 import { INote } from "src/models/Note";
 import { useAppContext } from "src/store/store";
 import { addNote, deleteNote, updateNote } from "src/store/actions";
+import { ReactComponent as IconTrash } from "src/assets/icon-trash.svg";
 
 interface IInputFieldProps {
   item: INote;
@@ -83,16 +84,7 @@ const Note: React.FC<IInputFieldProps> = ({ item, createNew }) => {
             onClick={() => deleteNoteHanlder(updatedNote.id)}
             className={css.deleteBtn}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-            >
-              <path d="M15 4V3H9v1H4v2h1v13c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V6h1V4h-5zm2 15H7V6h10v13z"></path>
-              <path d="M9 8h2v9H9zm4 0h2v9h-2z"></path>
-            </svg>
+            <IconTrash />
           </div>
         </div>
       )}
