@@ -14,4 +14,11 @@ const addNote: Action<INote> = (note) => {
   };
 };
 
-export { addNote };
+const updateNote: Action<INote> = (note) => {
+  return {
+    type: "UPDATE",
+    payload: note,
+  };
+};
+
+export { addNote, updateNote };
