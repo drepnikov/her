@@ -1,4 +1,5 @@
 import { INote } from "src/models/Note";
+import { ACTION_TYPES } from "src/store/actions";
 
 interface IAppState {
   notes: INote[];
@@ -52,9 +53,9 @@ const appReducer = (
   const { type, payload } = action;
 
   switch (type) {
-    case "ADD":
+    case ACTION_TYPES.ADD:
       return { ...state, notes: [payload, ...state.notes] };
-    case "UPDATE":
+    case ACTION_TYPES.UPDATE:
       const targetIndex = state.notes.findIndex(
         (item) => item.id === payload.id
       );
@@ -72,7 +73,7 @@ const appReducer = (
         return state;
       }
 
-    case "DELETE":
+    case ACTION_TYPES.DELETE:
       return {
         ...state,
         notes: state.notes.filter((item) => item.id !== payload),
