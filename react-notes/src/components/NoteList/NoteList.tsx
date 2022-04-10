@@ -28,7 +28,7 @@ const NoteList: React.FC<INoteListProps> = () => {
     };
 
     notes.forEach((item) => {
-      item.fixed
+      item.pinned
         ? newGroupedNotes.fixed.push(item)
         : newGroupedNotes.other.push(item);
     });
@@ -54,7 +54,9 @@ const NoteList: React.FC<INoteListProps> = () => {
           </div>
         )}
         <div>
-          {groupedNotes.fixed.length > 0 && <div>Другие</div>}
+          {groupedNotes.fixed.length > 0 && groupedNotes.other.length > 0 && (
+            <div>Другие</div>
+          )}
 
           {groupedNotes.other.map((note) => (
             <div key={note.id} className={css.noteListItem}>

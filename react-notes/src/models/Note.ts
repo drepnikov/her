@@ -1,12 +1,12 @@
 export interface INote {
   title: string;
   content: string;
-  fixed: boolean;
+  pinned: boolean;
   id: string;
 }
 
 export const getNewNote = (): INote => ({
-  fixed: false,
+  pinned: false,
   title: "",
   content: "",
   id: String(Date.now()),

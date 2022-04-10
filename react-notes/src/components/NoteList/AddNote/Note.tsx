@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useRef, useState } from "react";
+import { MouseEventHandler, useRef, useState } from "react";
 import { InputText } from "src/components/inputs/InputText/InputText";
 import { useOutsideClick } from "src/hooks/useOutsideHook";
 import css from "src/components/NoteList/NoteList.module.scss";
@@ -7,6 +7,8 @@ import { INote } from "src/models/Note";
 import { useAppContext } from "src/store/store";
 import { addNote, deleteNote, updateNote } from "src/store/actions";
 import { ReactComponent as IconTrash } from "src/assets/icon-trash.svg";
+import { ReactComponent as IconPinned } from "src/assets/icon-pinned.svg";
+import { ReactComponent as IconUnpinned } from "src/assets/icon-unpinned.svg";
 
 interface IInputFieldProps {
   item: INote;
@@ -23,6 +25,12 @@ const Note: React.FC<IInputFieldProps> = ({ item, createNew }) => {
 
   const onContentChange = (val: string) =>
     setUpdatedNote((prev) => ({ ...prev, content: val }));
+
+  const onTogglePinned: MouseEventHandler = (e) => {
+    e.stopPropagation();
+
+    setUpdatedNote((prev) => ({ ...prev, pinned: !prev.pinned }));
+  };
 
   const deleteNoteHanlder = (id: string) => {
     dispatch(deleteNote(id));
@@ -49,6 +57,9 @@ const Note: React.FC<IInputFieldProps> = ({ item, createNew }) => {
       <div>
         {editMode && (
           <div>
+            <div onClick={onTogglePinned} className={css.toFixBtn}>
+              {updatedNote.pinned ? <IconPinned /> : <IconUnpinned />}
+            </div>
             <div className={css.inputContainer}>
               <InputText
                 onValueChange={onTitleChange}
