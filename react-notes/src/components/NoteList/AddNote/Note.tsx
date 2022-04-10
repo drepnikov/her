@@ -35,6 +35,12 @@ const Note: React.FC<IInputFieldProps> = ({ item, createNew }) => {
   const deleteNoteHanlder = (id: string) => {
     dispatch(deleteNote(id));
   };
+  const addNoteHanlder = () => {
+    dispatch(addNote(updatedNote));
+  };
+  const updateNoteHanlder = () => {
+    dispatch(updateNote(updatedNote));
+  };
 
   const [editMode, setEditMode] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -42,9 +48,7 @@ const Note: React.FC<IInputFieldProps> = ({ item, createNew }) => {
   useOutsideClick(ref, () => {
     if (editMode) {
       if (updatedNote.title.length || updatedNote.content.length) {
-        createNew
-          ? dispatch(addNote(updatedNote))
-          : dispatch(updateNote(updatedNote));
+        createNew ? addNoteHanlder() : updateNoteHanlder();
       }
 
       setUpdatedNote({ ...item });
