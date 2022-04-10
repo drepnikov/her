@@ -1,11 +1,12 @@
 import { INote } from "src/models/Note";
-import { ACTION_TYPES } from "src/store/actions";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "src/store/store";
 
-interface IAppState {
+export interface NotesState {
   notes: INote[];
 }
 
-const initialState: IAppState = {
+const initialState: NotesState = {
   notes: [
     {
       title: "Привет мир",
@@ -46,41 +47,31 @@ const initialState: IAppState = {
   ],
 };
 
-const appReducer = (
-  state: IAppState,
-  action: { type: string; payload: any }
-) => {
-  const { type, payload } = action;
+export const notesSlice = createSlice({
+  initialState,
+  name: "notes",
+  reducers: {
+    addNote: (state, action: PayloadAction<INote>) => {
+      state.notes.unshift(action.payload);
+    },
 
-  switch (type) {
-    case ACTION_TYPES.ADD:
-      return { ...state, notes: [payload, ...state.notes] };
-    case ACTION_TYPES.UPDATE:
+    deleteNote: (state, action: PayloadAction<string>) => {
+      state.notes = state.notes.filter((item) => item.id !== action.payload);
+    },
+
+    updateNote: (state, action: PayloadAction<INote>) => {
       const targetIndex = state.notes.findIndex(
-        (item) => item.id === payload.id
+        (item) => item.id === action.payload.id
       );
 
       if (targetIndex !== -1) {
-        const copiedNotes = [...state.notes];
-
-        copiedNotes.splice(targetIndex, 1, payload);
-
-        return {
-          ...state,
-          notes: copiedNotes,
-        };
-      } else {
-        return state;
+        state.notes.splice(targetIndex, 1, action.payload);
       }
+    },
+  },
+});
 
-    case ACTION_TYPES.DELETE:
-      return {
-        ...state,
-        notes: state.notes.filter((item) => item.id !== payload),
-      };
-    default:
-      return state;
-  }
-};
+export const { updateNote, deleteNote, addNote } = notesSlice.actions;
+export const selectNotes = (state: RootState) => state.notes;
 
-export { appReducer, initialState };
+export default notesSlice.reducer;

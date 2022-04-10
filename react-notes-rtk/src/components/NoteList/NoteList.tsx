@@ -1,9 +1,10 @@
 import * as React from "react";
-import { Note } from "src/components/NoteList/AddNote/Note";
+import { Note } from "src/components/NoteList/Note/Note";
 import { getNewNote, INote } from "src/models/Note";
-import { useAppContext } from "src/store/store";
 import css from "./NoteList.module.scss";
 import { useEffect, useState } from "react";
+import { useAppSelector } from "src/store/hooks";
+import { selectNotes } from "src/store/slices/notes";
 
 interface INoteListProps {}
 
@@ -12,9 +13,7 @@ interface IGroupedNotes {
   other: INote[];
 }
 const NoteList: React.FC<INoteListProps> = () => {
-  const {
-    state: { notes },
-  } = useAppContext();
+  const { notes } = useAppSelector(selectNotes);
 
   const [groupedNotes, setGroupedNotes] = useState<IGroupedNotes>({
     fixed: [],

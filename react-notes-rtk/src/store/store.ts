@@ -1,19 +1,11 @@
-import { useContext, createContext, Dispatch } from "react";
-import { initialState } from "src/store/reducer";
-import { ActionReturnType } from "src/store/actions";
+import { configureStore } from "@reduxjs/toolkit";
+import notesReducer from "./slices/notes";
 
-interface IAppState {
-  state: typeof initialState;
-  dispatch: Dispatch<ActionReturnType>;
-}
-
-const AppState = createContext<IAppState>({
-  state: initialState,
-  dispatch: () => {},
+export const store = configureStore({
+  reducer: {
+    notes: notesReducer,
+  },
 });
 
-const useAppContext = () => {
-  return useContext(AppState);
-};
-
-export { AppState, useAppContext };
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

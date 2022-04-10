@@ -4,11 +4,11 @@ import { InputText } from "src/components/inputs/InputText/InputText";
 import { useOutsideClick } from "src/hooks/useOutsideHook";
 import css from "src/components/NoteList/NoteList.module.scss";
 import { INote } from "src/models/Note";
-import { useAppContext } from "src/store/store";
-import { addNote, deleteNote, updateNote } from "src/store/actions";
 import { ReactComponent as IconTrash } from "src/assets/icon-trash.svg";
 import { ReactComponent as IconPinned } from "src/assets/icon-pinned.svg";
 import { ReactComponent as IconUnpinned } from "src/assets/icon-unpinned.svg";
+import { useAppDispatch } from "src/store/hooks";
+import { addNote, deleteNote, updateNote } from "src/store/slices/notes";
 
 interface IInputFieldProps {
   item: INote;
@@ -16,7 +16,7 @@ interface IInputFieldProps {
 }
 
 const Note: React.FC<IInputFieldProps> = ({ item, createNew }) => {
-  const { dispatch } = useAppContext();
+  const dispatch = useAppDispatch();
 
   const [updatedNote, setUpdatedNote] = useState<INote>({ ...item });
 
@@ -35,6 +35,12 @@ const Note: React.FC<IInputFieldProps> = ({ item, createNew }) => {
   const deleteNoteHanlder = (id: string) => {
     dispatch(deleteNote(id));
   };
+  const addNoteHanlder = () => {
+    dispatch(addNote(updatedNote));
+  };
+  const updateNoteHanlder = () => {
+    dispatch(updateNote(updatedNote));
+  };
 
   const [editMode, setEditMode] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -42,9 +48,7 @@ const Note: React.FC<IInputFieldProps> = ({ item, createNew }) => {
   useOutsideClick(ref, () => {
     if (editMode) {
       if (updatedNote.title.length || updatedNote.content.length) {
-        createNew
-          ? dispatch(addNote(updatedNote))
-          : dispatch(updateNote(updatedNote));
+        createNew ? addNoteHanlder() : updateNoteHanlder();
       }
 
       setUpdatedNote({ ...item });
