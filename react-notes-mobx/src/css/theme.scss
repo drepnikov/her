@@ -1,0 +1,6 @@
+$text-color: #ffffff;
+
+@mixin secondaryText {
+  color: $text-color;
+  opacity: 0.8;
+}

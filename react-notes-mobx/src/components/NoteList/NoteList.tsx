@@ -1,37 +1,14 @@
 import * as React from "react";
 import { Note } from "src/components/NoteList/Note/Note";
-import { getNewNote, INote } from "src/models/Note";
+import { getNewNote } from "src/models/Note";
 import css from "./NoteList.module.scss";
-import { useEffect, useState } from "react";
+import { store } from "src/store/store";
+import { observer } from "mobx-react-lite";
 
 interface INoteListProps {}
 
-interface IGroupedNotes {
-  fixed: INote[];
-  other: INote[];
-}
-const NoteList: React.FC<INoteListProps> = () => {
-  const notes: INote[] = [];
-
-  const [groupedNotes, setGroupedNotes] = useState<IGroupedNotes>({
-    fixed: [],
-    other: [],
-  });
-
-  useEffect(() => {
-    const newGroupedNotes: IGroupedNotes = {
-      fixed: [],
-      other: [],
-    };
-
-    notes.forEach((item) => {
-      item.pinned
-        ? newGroupedNotes.fixed.push(item)
-        : newGroupedNotes.other.push(item);
-    });
-
-    setGroupedNotes(newGroupedNotes);
-  }, [notes]);
+const NoteList: React.FC<INoteListProps> = observer(() => {
+  const { groupedNotes } = store;
 
   return (
     <div className={css.noteListContainer}>
@@ -64,6 +41,6 @@ const NoteList: React.FC<INoteListProps> = () => {
       </div>
     </div>
   );
-};
+});
 
 export { NoteList };
