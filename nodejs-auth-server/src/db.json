@@ -1,0 +1,29 @@
+{
+    "users": {
+        "admin": {
+            "username": "admin",
+            "password": "admin",
+            "id": "1a587f4d-63be-4d3d-ae22-1c3271fe29dc"
+        },
+        "test": {
+            "username": "test",
+            "password": "1234",
+            "id": "14ac70b2-b8c1-47d2-8e7e-f4f4768ea2be"
+        },
+        "test123": {
+            "username": "test123",
+            "password": "1234",
+            "id": "3de6c4c7-614f-49aa-806b-d6ddb82db9c7"
+        },
+        "sadsa": {
+            "username": "sadsa",
+            "password": "1234",
+            "id": "c35b9263-d767-4438-b8de-f4302b18674e"
+        },
+        "sssssss": {
+            "username": "sssssss",
+            "password": "123456",
+            "id": "27fda159-93f1-435f-93a8-e3d77e4b1556"
+        }
+    }
+}

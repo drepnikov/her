@@ -1,16 +1,34 @@
+import { IUser, userService } from "../../../services/User";
 import { Controller } from "../../../types";
 
-interface ISignupControllerBody {
-    login: string;
-    password: string;
-}
+interface ISignupRequestBody extends Pick<IUser, "password" | "username"> {}
+interface ISignupResponseBody extends IUser {}
 
-const signupController: Controller<ISignupControllerBody> = (req, res) => {
-    const { login, password } = req.body;
+const signupController: Controller<ISignupRequestBody, ISignupResponseBody> = async (req, res) => {
+    const { username, password } = req.body;
 
-    console.log(`Наш логин - ${login}, наш пароль - ${password}`);
+    const invalidPassword = userService.isInvalidPassword(password);
 
-    res.send("Ну здравствуй :) Регистратыш");
+    if (invalidPassword) {
+        res.status(406);
+        return res.json({ errorMessage: invalidPassword });
+    }
+
+    const invalidUsername = userService.isInvalidUsername(username);
+
+    if (invalidUsername) {
+        res.status(406);
+        return res.json({ errorMessage: invalidUsername });
+    }
+
+    if (await userService.isExist(username)) {
+        res.status(406);
+        return res.json({ errorMessage: "Пользователь с таким именем существует" });
+    }
+
+    const newUser = await userService.create({ username, password });
+
+    return res.json(newUser);
 };
 
 export { signupController };
