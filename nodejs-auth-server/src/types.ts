@@ -1,3 +1,3 @@
 import { NextFunction, Request, Response } from "express";
 
-export type Controller = (req: Request, res: Response, next: NextFunction) => void;
+export type Controller<Body = any> = (req: Request<void, void, Body>, res: Response, next: NextFunction) => void;
