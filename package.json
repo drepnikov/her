@@ -1,4 +1,9 @@
 {
+  "prettier": {
+    "tabWidth": 4,
+    "printWidth": 120
+
+  },
   "devDependencies": {
     "prettier": "2.6.2"
   }

@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "CommonJS",
     "outDir": "build",
     "sourceMap": true,
+    "esModuleInterop": true,
     "strict": true,
     "target": "es2017"
   },

@@ -1,11 +1,11 @@
-const express = require("express");
+import express from "express";
+import { authRouter } from "./routes/auth/auth";
+
 const app = express();
 const port = 3000;
 
-app.get("/", (req: any, res: any) => {
-  res.send("Hello worldss");
-});
+app.use(authRouter);
 
 app.listen(port, () => {
-  console.log("Сервер запущен");
+    console.log("Сервер запущен");
 });
