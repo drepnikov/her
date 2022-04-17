@@ -1,7 +1,25 @@
 import db from "../db.json";
-import { IDatabase } from "../types";
 import * as fs from "fs";
 import path from "path";
+import { IUser } from "./User";
+import { IToken } from "./Token";
+
+export interface IDatabase {
+    users: {
+        // "user-id": IUser
+        [key: string]: IUser;
+    };
+
+    emails: {
+        // "abc@dfg.com": "user-id"
+        [key: string]: string;
+    };
+
+    tokens: {
+        // "user-id": IToken
+        [key: string]: Omit<IToken, "accessToken">;
+    };
+}
 
 class Database {
     async getAllData(): Promise<IDatabase> {

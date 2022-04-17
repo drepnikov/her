@@ -4,17 +4,35 @@
             "email": "admin@admin.ru",
             "password": "admin",
             "id": "1a587f4d-63be-4d3d-ae22-1c3271fe29dc",
-            "activationLink": "1a587f4d-63be-4d3d-ae22-1c3271fe29dc"
+            "activationLink": "1a587f4d-63be-4d3d-ae22-1c3271fe29dc",
+            "isActivated": true
         },
-        "987555f9-897e-4ec8-9bc5-74995184de91": {
+        "9a0c92ce-6f9d-418c-8dd8-f9ee1cc59113": {
             "email": "d.v.repa@gmail.com",
-            "password": "$2b$04$.iZsRnRH81i/Z0LS58isjOO6nzQk0yaABessHjNnV0bUivzI9VTo.",
-            "id": "987555f9-897e-4ec8-9bc5-74995184de91",
-            "activationLink": "987555f9-897e-4ec8-9bc5-74995184de91"
+            "password": "$2b$04$9APa60lK2T7WKU1al//.WeXjHa0i9fRt7fsnC/27o9fTqNAAai4LC",
+            "id": "9a0c92ce-6f9d-418c-8dd8-f9ee1cc59113",
+            "activationLink": "9a0c92ce-6f9d-418c-8dd8-f9ee1cc59113",
+            "isActivated": false
+        },
+        "2a7c1aa9-e343-4100-aaa7-6715a1acdd05": {
+            "email": "d.v.repa2@gmail.com",
+            "password": "$2b$04$GZ4jJVnWKeidLAAKXWLuMOagIQQTD/b.Bf/UNCtm6wXrldOqsH7AO",
+            "id": "2a7c1aa9-e343-4100-aaa7-6715a1acdd05",
+            "activationLink": "2a7c1aa9-e343-4100-aaa7-6715a1acdd05",
+            "isActivated": false
         }
     },
     "emails": {
         "admin@admin.ru": "1a587f4d-63be-4d3d-ae22-1c3271fe29dc",
-        "d.v.repa@gmail.com": "987555f9-897e-4ec8-9bc5-74995184de91"
+        "d.v.repa@gmail.com": "9a0c92ce-6f9d-418c-8dd8-f9ee1cc59113",
+        "d.v.repa2@gmail.com": "2a7c1aa9-e343-4100-aaa7-6715a1acdd05"
+    },
+    "tokens": {
+        "9a0c92ce-6f9d-418c-8dd8-f9ee1cc59113": {
+            "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImQudi5yZXBhQGdtYWlsLmNvbSIsImlzQWN0aXZhdGVkIjpmYWxzZSwiaWQiOiI5YTBjOTJjZS02ZjlkLTQxOGMtOGRkOC1mOWVlMWNjNTkxMTMiLCJpYXQiOjE2NTAxODg0NjcsImV4cCI6MTY1Mjc4MDQ2N30.ltHO6MOUl5HzDW12y3C1WoBzztdJ6GeOvzsLFOC76lM"
+        },
+        "2a7c1aa9-e343-4100-aaa7-6715a1acdd05": {
+            "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImQudi5yZXBhMkBnbWFpbC5jb20iLCJpc0FjdGl2YXRlZCI6ZmFsc2UsImlkIjoiMmE3YzFhYTktZTM0My00MTAwLWFhYTctNjcxNWExYWNkZDA1IiwiaWF0IjoxNjUwMTg4ODAwLCJleHAiOjE2NTI3ODA4MDB9.wmL1gg4tAOYS0zDf1rO6zXiNbd9cFq4rstlZol8uVGE"
+        }
     }
 }
