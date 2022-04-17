@@ -1,29 +1,16 @@
 {
     "users": {
-        "admin": {
-            "username": "admin",
+        "admin@admin.ru": {
+            "email": "admin@admin.ru",
             "password": "admin",
-            "id": "1a587f4d-63be-4d3d-ae22-1c3271fe29dc"
+            "id": "1a587f4d-63be-4d3d-ae22-1c3271fe29dc",
+            "activationLink": ""
         },
-        "test": {
-            "username": "test",
-            "password": "1234",
-            "id": "14ac70b2-b8c1-47d2-8e7e-f4f4768ea2be"
-        },
-        "test123": {
-            "username": "test123",
-            "password": "1234",
-            "id": "3de6c4c7-614f-49aa-806b-d6ddb82db9c7"
-        },
-        "sadsa": {
-            "username": "sadsa",
-            "password": "1234",
-            "id": "c35b9263-d767-4438-b8de-f4302b18674e"
-        },
-        "sssssss": {
-            "username": "sssssss",
-            "password": "123456",
-            "id": "27fda159-93f1-435f-93a8-e3d77e4b1556"
+        "12312322131312": {
+            "email": "12312322131312",
+            "password": "$2b$04$d/ypol/Zkl90PrUeWtOJieH.cmtP7WjLX9/QZtmA5C2ILwEKLqsbK",
+            "id": "78e1c304-4a1d-418c-95aa-1b564d6bddec",
+            "activationLink": "78e1c304-4a1d-418c-95aa-1b564d6bddec"
         }
     }
 }

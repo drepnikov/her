@@ -1,7 +1,11 @@
 import { Controller } from "../../../types";
+import { IUser } from "../../../services/User";
 
-const signinController: Controller = (req, res) => {
-    res.send("Ну здравствуй :) Авторизатыш");
+interface ISigninRequestBody extends Pick<IUser, "password" | "email"> {}
+interface ISigninResponseBody {}
+
+const signinController: Controller<ISigninRequestBody, ISigninResponseBody> = (req, res) => {
+    res.json({});
 };
 
 export { signinController };

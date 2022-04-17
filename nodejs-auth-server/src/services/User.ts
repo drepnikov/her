@@ -1,27 +1,38 @@
 import { v4 } from "uuid";
 import { database } from "./Database";
+import bcrypt from "bcrypt";
+import { mailService } from "./Mail";
 
 export interface IUser {
-    username: string;
+    email: string;
     password: string;
     id: string;
+    activationLink: string;
 }
 
 class UserService {
     private INVALID_PASSWORD_COMMON_MESSAGE = "Пароль должен быть не менее 6 символов";
-    private INVALID_USERNAME_COMMON_MESSAGE = "Имя пользователя должно быть не менее 4 символов";
+    private INVALID_EMAIL_COMMON_MESSAGE = "Email должен быть не менее 4 символов";
 
-    async create(user: Omit<IUser, "id">): Promise<IUser> {
+    async create(user: Omit<IUser, "id" | "activationLink">): Promise<IUser> {
         const data = await database.getAllData();
+
+        const hashedPassword = await bcrypt.hash(user.password, 3);
+        const uniqueId = v4();
 
         const newUser: IUser = {
             ...user,
-            id: v4(),
+
+            password: hashedPassword,
+            id: uniqueId,
+            activationLink: uniqueId,
         };
 
-        data.users[newUser.username] = newUser;
+        data.users[newUser.email] = newUser;
 
         await database.updateAllData(data);
+
+        await mailService.sendActivationMail(newUser.email, newUser.activationLink);
 
         return newUser;
     }
@@ -40,10 +51,10 @@ class UserService {
         return "";
     }
 
-    isInvalidUsername(username: any) {
-        if (typeof username !== "string") return "Логин должен быть строкой. Фронт, ты чего?";
+    isInvalidEmail(email: any) {
+        if (typeof email !== "string") return "Email должен быть строкой. Фронт, ты чего?";
 
-        if (username.length < 4) return this.INVALID_USERNAME_COMMON_MESSAGE;
+        if (email.length < 4) return this.INVALID_EMAIL_COMMON_MESSAGE;
 
         return "";
     }

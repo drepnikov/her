@@ -8,4 +8,10 @@ authRouter.post("/auth/signup", signupController);
 
 authRouter.post("/auth/signin", signinController);
 
+authRouter.post("/auth/signout", () => {});
+
+authRouter.post("/auth/activate/:link", () => {});
+
+authRouter.post("/auth/refresh", () => {});
+
 export { authRouter };
