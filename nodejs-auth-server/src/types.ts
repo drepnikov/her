@@ -11,6 +11,10 @@ export interface IDatabase {
     users: {
         [key: string]: IUser;
     };
+
+    emails: {
+        [key: string]: string;
+    };
 }
 
 export interface IErrorResponseBody {

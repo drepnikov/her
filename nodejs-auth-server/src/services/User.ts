@@ -28,7 +28,8 @@ class UserService {
             activationLink: uniqueId,
         };
 
-        data.users[newUser.email] = newUser;
+        data.users[newUser.id] = newUser;
+        data.emails[newUser.email] = newUser.id;
 
         await database.updateAllData(data);
 
@@ -37,10 +38,10 @@ class UserService {
         return newUser;
     }
 
-    async isExist(username: string): Promise<boolean> {
+    async isExist(email: string): Promise<boolean> {
         const data = await database.getAllData();
 
-        return username in data.users;
+        return email in data.emails;
     }
 
     isInvalidPassword(password: any) {
