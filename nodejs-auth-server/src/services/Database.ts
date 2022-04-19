@@ -1,4 +1,3 @@
-import db from "../db.json";
 import * as fs from "fs";
 import path from "path";
 import { IUser } from "./User";
@@ -23,12 +22,24 @@ export interface IDatabase {
 
 class Database {
     async getAllData(): Promise<IDatabase> {
-        return db;
+        return new Promise((resolve) => {
+            fs.readFile(path.resolve("db.json"), "utf8", (err, data) => {
+                resolve(JSON.parse(data));
+            });
+        });
     }
 
     async updateAllData(data: IDatabase) {
-        fs.writeFile(path.resolve("./src/db.json"), JSON.stringify(data, null, 4), (err) => {
-            console.error("Ошибка при записи в БД", err);
+        fs.writeFile(path.resolve("db.json"), JSON.stringify(data, null, 4), (err) => {
+            if (err) console.error("Ошибка при записи в БД", err);
+        });
+    }
+
+    async resetDatabase() {
+        await this.updateAllData({
+            users: {},
+            tokens: {},
+            emails: {},
         });
     }
 }

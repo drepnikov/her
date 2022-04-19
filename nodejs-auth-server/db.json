@@ -1,0 +1,18 @@
+{
+    "users": {
+        "23fa880d-bd97-404a-a315-69467496e9a6": {
+            "email": "d.v.repnikov@gmail.com",
+            "password": "$2b$04$d0t5eMlSSbm9iq6ctHJ95uL/KlUbSHmcIpQ2U.FgKmVEoRcw8Rymm",
+            "id": "23fa880d-bd97-404a-a315-69467496e9a6",
+            "isActivated": false
+        }
+    },
+    "tokens": {
+        "23fa880d-bd97-404a-a315-69467496e9a6": {
+            "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImQudi5yZXBuaWtvdkBnbWFpbC5jb20iLCJpc0FjdGl2YXRlZCI6ZmFsc2UsImlkIjoiMjNmYTg4MGQtYmQ5Ny00MDRhLWEzMTUtNjk0Njc0OTZlOWE2IiwiaWF0IjoxNjUwNDAxNzMyLCJleHAiOjE2NTI5OTM3MzJ9.3FjeVFAGEKIl6VbXf27bpnPIHwRpU19RwAJXh6DODDY"
+        }
+    },
+    "emails": {
+        "d.v.repnikov@gmail.com": "23fa880d-bd97-404a-a315-69467496e9a6"
+    }
+}

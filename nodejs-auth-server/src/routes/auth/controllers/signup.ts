@@ -1,5 +1,6 @@
 import { IUser, userService } from "../../../services/User";
 import { Controller } from "../../../types";
+import { mailService } from "../../../services/Mail";
 
 interface ISignupRequestBody extends Pick<IUser, "password" | "email"> {}
 interface ISignupResponseBody extends IUser {}
@@ -27,6 +28,8 @@ const signupController: Controller<ISignupRequestBody, ISignupResponseBody> = as
     }
 
     const newUser = await userService.create({ email, password });
+
+    await mailService.sendActivationMail(newUser.email, `${process.env.API_URL}/${newUser.id}`);
 
     res.cookie("refreshToken", newUser.refreshToken, { maxAge: 1000 * 60 * 60 * 24 * 30, httpOnly: true });
 

@@ -1,14 +1,12 @@
 import { v4 } from "uuid";
 import { database } from "./Database";
 import bcrypt from "bcrypt";
-import { mailService } from "./Mail";
 import { IToken, tokenService } from "./Token";
 
 export interface IUser {
     email: string;
     password: string;
     id: string;
-    activationLink: string;
     isActivated: boolean;
 }
 
@@ -16,7 +14,7 @@ class UserService {
     private INVALID_PASSWORD_COMMON_MESSAGE = "Пароль должен быть не менее 6 символов";
     private INVALID_EMAIL_COMMON_MESSAGE = "Email должен быть не менее 4 символов";
 
-    async create(user: Omit<IUser, "id" | "activationLink" | "isActivated">): Promise<IUser & IToken> {
+    async create(user: Omit<IUser, "id" | "isActivated">): Promise<IUser & IToken> {
         const data = await database.getAllData();
 
         const hashedPassword = await bcrypt.hash(user.password, 3);
@@ -27,7 +25,6 @@ class UserService {
 
             password: hashedPassword,
             id: uniqueId,
-            activationLink: uniqueId,
             isActivated: false,
         };
 
@@ -43,8 +40,6 @@ class UserService {
         });
 
         await tokenService.saveRefreshToken(newUser.id, tokens.refreshToken);
-
-        await mailService.sendActivationMail(newUser.email, newUser.activationLink);
 
         return { ...newUser, ...tokens };
     }
