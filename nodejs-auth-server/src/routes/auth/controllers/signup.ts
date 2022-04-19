@@ -29,6 +29,7 @@ const signupController: Controller<ISignupRequestBody, ISignupResponseBody> = as
     const newUser = await userService.create({ email, password });
 
     res.cookie("refreshToken", newUser.refreshToken, { maxAge: 1000 * 60 * 60 * 24 * 30, httpOnly: true });
+
     return res.json(newUser);
 };
 

@@ -20,12 +20,20 @@
             "id": "2a7c1aa9-e343-4100-aaa7-6715a1acdd05",
             "activationLink": "2a7c1aa9-e343-4100-aaa7-6715a1acdd05",
             "isActivated": false
+        },
+        "75add537-2267-4b80-a61e-6f14f8a67063": {
+            "email": "d.v.repa3@gmail.com",
+            "password": "$2b$04$oarc533LU718vIh96rkBCOFzEcEnaE6cw87D9q/prcpXmW30g3UuK",
+            "id": "75add537-2267-4b80-a61e-6f14f8a67063",
+            "activationLink": "75add537-2267-4b80-a61e-6f14f8a67063",
+            "isActivated": false
         }
     },
     "emails": {
         "admin@admin.ru": "1a587f4d-63be-4d3d-ae22-1c3271fe29dc",
         "d.v.repa@gmail.com": "9a0c92ce-6f9d-418c-8dd8-f9ee1cc59113",
-        "d.v.repa2@gmail.com": "2a7c1aa9-e343-4100-aaa7-6715a1acdd05"
+        "d.v.repa2@gmail.com": "2a7c1aa9-e343-4100-aaa7-6715a1acdd05",
+        "d.v.repa3@gmail.com": "75add537-2267-4b80-a61e-6f14f8a67063"
     },
     "tokens": {
         "9a0c92ce-6f9d-418c-8dd8-f9ee1cc59113": {
@@ -33,6 +41,9 @@
         },
         "2a7c1aa9-e343-4100-aaa7-6715a1acdd05": {
             "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImQudi5yZXBhMkBnbWFpbC5jb20iLCJpc0FjdGl2YXRlZCI6ZmFsc2UsImlkIjoiMmE3YzFhYTktZTM0My00MTAwLWFhYTctNjcxNWExYWNkZDA1IiwiaWF0IjoxNjUwMTg4ODAwLCJleHAiOjE2NTI3ODA4MDB9.wmL1gg4tAOYS0zDf1rO6zXiNbd9cFq4rstlZol8uVGE"
+        },
+        "75add537-2267-4b80-a61e-6f14f8a67063": {
+            "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImQudi5yZXBhM0BnbWFpbC5jb20iLCJpc0FjdGl2YXRlZCI6ZmFsc2UsImlkIjoiNzVhZGQ1MzctMjI2Ny00YjgwLWE2MWUtNmYxNGY4YTY3MDYzIiwiaWF0IjoxNjUwMzk2ODI2LCJleHAiOjE2NTI5ODg4MjZ9.-uxry96SgODlbDRsx5RewCYYOYZlara_LLMFahEM8OA"
         }
     }
 }
