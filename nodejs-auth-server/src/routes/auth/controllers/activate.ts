@@ -11,13 +11,9 @@ const activateController: Controller<void, void, IActivateParams> = async (req, 
 
     const user = await userService.getUserById(id);
 
-    if (!user) {
-        throw CustomError.BadRequest("Не найден пользователь");
-    }
+    if (!user) throw CustomError.BadRequest("Не найден пользователь");
 
-    if (user.isActivated) {
-        throw CustomError.BadRequest("Пользователь уже активирован");
-    }
+    if (user.isActivated) throw CustomError.BadRequest("Пользователь уже активирован");
 
     user.isActivated = true;
 

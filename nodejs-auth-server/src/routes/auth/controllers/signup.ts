@@ -1,31 +1,22 @@
-import { IUser, userService } from "../../../services/User";
+import { IRegisterAndLoginResponse, IUser, userService } from "../../../services/User";
 import { Controller } from "../../../types";
 import { mailService } from "../../../services/Mail";
 import { CustomError } from "../../../lib/CustomError";
 
 interface ISignupRequestBody extends Pick<IUser, "password" | "email"> {}
-interface ISignupResponseBody extends IUser {}
+interface ISignupResponseBody extends IRegisterAndLoginResponse {}
 
 const signupController: Controller<ISignupRequestBody, ISignupResponseBody> = async (req, res, next) => {
     const { email, password } = req.body;
 
-    const invalidPassword = userService.isInvalidPassword(password);
+    userService.isInvalidPassword(password);
 
-    if (invalidPassword) {
-        throw CustomError.BadRequest(invalidPassword);
-    }
+    userService.isInvalidEmail(email);
 
-    const invalidUsername = userService.isInvalidEmail(email);
-
-    if (invalidUsername) {
-        throw CustomError.BadRequest(invalidUsername);
-    }
-
-    if (await userService.isExistByEmail(email)) {
+    if (await userService.findByEmail(email))
         throw CustomError.BadRequest(`Пользователь с почтой ${email} уже существует`);
-    }
 
-    const newUser = await userService.create({ email, password });
+    const newUser = await userService.register({ email, password });
 
     await mailService.sendActivationMail(newUser.email, newUser.id);
 

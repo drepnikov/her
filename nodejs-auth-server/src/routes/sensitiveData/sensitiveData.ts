@@ -1,12 +1,12 @@
 import express from "express";
 import { database } from "../../services/Database";
-import { routeWithErrorHanling } from "../../lib/routeWithErrorHanling";
+import { routeWithErrorHandling } from "../../lib/routeWithErrorHandling";
 
 const sensitiveDataRouter = express.Router();
 
 sensitiveDataRouter.get(
     "/get-db",
-    routeWithErrorHanling(async (req, res) => {
+    routeWithErrorHandling(async (req, res) => {
         const allData = await database.getAllData();
 
         res.json({
@@ -19,7 +19,7 @@ sensitiveDataRouter.get(
 
 sensitiveDataRouter.post(
     "/reset-db",
-    routeWithErrorHanling(async (req, res) => {
+    routeWithErrorHandling(async (req, res) => {
         await database.resetDatabase();
 
         res.json({

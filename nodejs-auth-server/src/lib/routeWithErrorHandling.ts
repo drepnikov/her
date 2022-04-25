@@ -1,6 +1,6 @@
 import { Controller } from "../types";
 
-const routeWithErrorHanling = (callback: Controller) => {
+const routeWithErrorHandling = (callback: Controller) => {
     const route: Controller = async (req, res, next) => {
         try {
             await callback(req, res, next);
@@ -12,4 +12,4 @@ const routeWithErrorHanling = (callback: Controller) => {
     return route;
 };
 
-export { routeWithErrorHanling };
+export { routeWithErrorHandling };

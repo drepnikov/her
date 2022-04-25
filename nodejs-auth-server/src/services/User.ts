@@ -2,6 +2,7 @@ import { v4 } from "uuid";
 import { database } from "./Database";
 import bcrypt from "bcrypt";
 import { IToken, tokenService } from "./Token";
+import { CustomError } from "../lib/CustomError";
 
 export interface IUser {
     email: string;
@@ -10,14 +11,36 @@ export interface IUser {
     isActivated: boolean;
 }
 
-class UserService {
-    private INVALID_PASSWORD_COMMON_MESSAGE = "Пароль должен быть не менее 6 символов";
-    private INVALID_EMAIL_COMMON_MESSAGE = "Email должен быть не менее 4 символов";
+export type IRegisterAndLoginResponse = IUser & IToken;
 
-    async create(user: Omit<IUser, "id" | "isActivated">): Promise<IUser & IToken> {
+class UserService {
+    static INVALID_PASSWORD_COMMON_MESSAGE = "Пароль должен быть не менее 6 символов";
+    static INVALID_EMAIL_COMMON_MESSAGE = "Email должен быть не менее 4 символов";
+
+    static getHashedPassword(password: string): Promise<string> {
+        return bcrypt.hash(password, 3);
+    }
+
+    async login(user: IUser, password: string): Promise<IRegisterAndLoginResponse> {
+        const isPassEquals = await bcrypt.compare(password, user.password);
+
+        if (!isPassEquals) throw CustomError.BadRequest("Не верный пароль");
+
+        const tokens = tokenService.generateTokens({
+            email: user.email,
+            isActivated: user.isActivated,
+            id: user.id,
+        });
+
+        await tokenService.saveRefreshToken(user.id, tokens.refreshToken);
+
+        return { ...user, ...tokens };
+    }
+
+    async register(user: Omit<IUser, "id" | "isActivated">): Promise<IRegisterAndLoginResponse> {
         const data = await database.getAllData();
 
-        const hashedPassword = await bcrypt.hash(user.password, 3);
+        const hashedPassword = await UserService.getHashedPassword(user.password);
         const uniqueId = v4();
 
         const newUser: IUser = {
@@ -44,10 +67,10 @@ class UserService {
         return { ...newUser, ...tokens };
     }
 
-    async isExistByEmail(email: string): Promise<boolean> {
+    async findByEmail(email: string): Promise<string> {
         const data = await database.getAllData();
 
-        return email in data.emails;
+        return data.emails[email];
     }
 
     async getUserById(id: string): Promise<IUser | undefined> {
@@ -69,15 +92,13 @@ class UserService {
     isInvalidPassword(password: any) {
         if (typeof password !== "string") return "Пароль должен быть строкой. Фронт, ты чего?";
 
-        if (password.length < 6) return this.INVALID_PASSWORD_COMMON_MESSAGE;
-
-        return "";
+        if (password.length < 6) throw CustomError.BadRequest(UserService.INVALID_PASSWORD_COMMON_MESSAGE);
     }
 
     isInvalidEmail(email: any) {
         if (typeof email !== "string") return "Email должен быть строкой. Фронт, ты чего?";
 
-        if (email.length < 4) return this.INVALID_EMAIL_COMMON_MESSAGE;
+        if (email.length < 4) throw CustomError.BadRequest(UserService.INVALID_EMAIL_COMMON_MESSAGE);
 
         return "";
     }

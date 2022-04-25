@@ -1,18 +1,18 @@
 {
     "users": {
-        "ab6c79cb-22ab-4aa4-a8fd-98da16aa0006": {
+        "44d41c6a-cfe7-47a4-8e7a-3749f5880cc2": {
             "email": "d.v.repnikov@gmail.com",
-            "password": "$2b$04$FPnr2GtYcKe9OVg8bAFBlu9yXMmHJuS0kQStGv.NkbLCbTn.E4.Le",
-            "id": "ab6c79cb-22ab-4aa4-a8fd-98da16aa0006",
+            "password": "$2b$04$Rw9U5inujqqJCqbkfplKQuleBDn5ev7Wgz2IfjFLcPuOm1bm.O2RO",
+            "id": "44d41c6a-cfe7-47a4-8e7a-3749f5880cc2",
             "isActivated": true
         }
     },
     "tokens": {
-        "ab6c79cb-22ab-4aa4-a8fd-98da16aa0006": {
-            "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImQudi5yZXBuaWtvdkBnbWFpbC5jb20iLCJpc0FjdGl2YXRlZCI6ZmFsc2UsImlkIjoiYWI2Yzc5Y2ItMjJhYi00YWE0LWE4ZmQtOThkYTE2YWEwMDA2IiwiaWF0IjoxNjUwNDgyNTUyLCJleHAiOjE2NTMwNzQ1NTJ9.sjgRIN6EvcVhWTzZlarm8PyN4ZYRrP9kU4UyOtGAAjY"
+        "44d41c6a-cfe7-47a4-8e7a-3749f5880cc2": {
+            "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImQudi5yZXBuaWtvdkBnbWFpbC5jb20iLCJpc0FjdGl2YXRlZCI6dHJ1ZSwiaWQiOiI0NGQ0MWM2YS1jZmU3LTQ3YTQtOGU3YS0zNzQ5ZjU4ODBjYzIiLCJpYXQiOjE2NTA5MDI5MzIsImV4cCI6MTY1MzQ5NDkzMn0.tBCd0dIk3SSn9S2D11Rup8Keqoc4-Qvr3jM3QanqGIs"
         }
     },
     "emails": {
-        "d.v.repnikov@gmail.com": "ab6c79cb-22ab-4aa4-a8fd-98da16aa0006"
+        "d.v.repnikov@gmail.com": "44d41c6a-cfe7-47a4-8e7a-3749f5880cc2"
     }
 }

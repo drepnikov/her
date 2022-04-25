@@ -2,24 +2,24 @@ import express from "express";
 import { signupController } from "./controllers/signup";
 import { signinController } from "./controllers/signin";
 import { activateController } from "./controllers/activate";
-import { routeWithErrorHanling } from "../../lib/routeWithErrorHanling";
+import { routeWithErrorHandling } from "../../lib/routeWithErrorHandling";
 
 const authRouter = express.Router();
 
-authRouter.post("/signup", routeWithErrorHanling(signupController));
+authRouter.post("/signup", routeWithErrorHandling(signupController));
 
-authRouter.post("/signin", routeWithErrorHanling(signinController));
+authRouter.post("/signin", routeWithErrorHandling(signinController));
 
 authRouter.post(
     "/signout",
-    routeWithErrorHanling(() => {})
+    routeWithErrorHandling(() => {})
 );
 
-authRouter.get("/activate/:id", routeWithErrorHanling(activateController));
+authRouter.get("/activate/:id", routeWithErrorHandling(activateController));
 
 authRouter.post(
     "/refresh",
-    routeWithErrorHanling(() => {})
+    routeWithErrorHandling(() => {})
 );
 
 export { authRouter };
