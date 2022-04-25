@@ -44,10 +44,26 @@ class UserService {
         return { ...newUser, ...tokens };
     }
 
-    async isExist(email: string): Promise<boolean> {
+    async isExistByEmail(email: string): Promise<boolean> {
         const data = await database.getAllData();
 
         return email in data.emails;
+    }
+
+    async getUserById(id: string): Promise<IUser | undefined> {
+        const data = await database.getAllData();
+
+        return data.users[id];
+    }
+
+    async updateUser(user: IUser): Promise<boolean> {
+        const data = await database.getAllData();
+
+        data.users[user.id] = user;
+
+        await database.updateAllData(data);
+
+        return true;
     }
 
     isInvalidPassword(password: any) {

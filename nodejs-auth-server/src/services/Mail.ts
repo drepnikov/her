@@ -19,7 +19,9 @@ class MailService {
         });
     }
 
-    async sendActivationMail(to: string, link: string) {
+    async sendActivationMail(to: string, id: string) {
+        const link = `${process.env.API_URL}/auth/activate/${id}`;
+
         console.info(`Отправляем письмо ${to} с ссылкой активации ${link}`);
 
         await this.transporter.sendMail({

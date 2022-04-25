@@ -1,17 +1,25 @@
 import express from "express";
 import { signupController } from "./controllers/signup";
 import { signinController } from "./controllers/signin";
+import { activateController } from "./controllers/activate";
+import { routeWithErrorHanling } from "../../lib/routeWithErrorHanling";
 
 const authRouter = express.Router();
 
-authRouter.post("/auth/signup", signupController);
+authRouter.post("/signup", routeWithErrorHanling(signupController));
 
-authRouter.post("/auth/signin", signinController);
+authRouter.post("/signin", routeWithErrorHanling(signinController));
 
-authRouter.post("/auth/signout", () => {});
+authRouter.post(
+    "/signout",
+    routeWithErrorHanling(() => {})
+);
 
-authRouter.post("/auth/activate/:link", () => {});
+authRouter.get("/activate/:id", routeWithErrorHanling(activateController));
 
-authRouter.post("/auth/refresh", () => {});
+authRouter.post(
+    "/refresh",
+    routeWithErrorHanling(() => {})
+);
 
 export { authRouter };
