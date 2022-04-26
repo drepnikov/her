@@ -21,6 +21,10 @@ class UserService {
         return bcrypt.hash(password, 3);
     }
 
+    async logout(userId: string) {
+        return tokenService.deleteRefreshToken(userId);
+    }
+
     async login(user: IUser, password: string): Promise<IRegisterAndLoginResponse> {
         const isPassEquals = await bcrypt.compare(password, user.password);
 

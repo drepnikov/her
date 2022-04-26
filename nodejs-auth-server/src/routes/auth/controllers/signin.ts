@@ -1,6 +1,7 @@
 import { Controller } from "../../../types";
 import { IRegisterAndLoginResponse, IUser, userService } from "../../../services/User";
 import { CustomError } from "../../../lib/CustomError";
+import { setRefreshTokenCookie } from "../../../lib/setRefreshToken";
 
 interface ISigninRequestBody extends Pick<IUser, "password" | "email"> {}
 interface ISigninResponseBody extends IRegisterAndLoginResponse {}
@@ -18,7 +19,7 @@ const signinController: Controller<ISigninRequestBody, ISigninResponseBody> = as
 
     const loggedUser = await userService.login(user, password);
 
-    res.cookie("refreshToken", loggedUser.refreshToken, { maxAge: 1000 * 60 * 60 * 24 * 30, httpOnly: true });
+    setRefreshTokenCookie(res, loggedUser.refreshToken);
 
     res.json(loggedUser);
 };

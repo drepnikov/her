@@ -2,6 +2,7 @@ import { IRegisterAndLoginResponse, IUser, userService } from "../../../services
 import { Controller } from "../../../types";
 import { mailService } from "../../../services/Mail";
 import { CustomError } from "../../../lib/CustomError";
+import { setRefreshTokenCookie } from "../../../lib/setRefreshToken";
 
 interface ISignupRequestBody extends Pick<IUser, "password" | "email"> {}
 interface ISignupResponseBody extends IRegisterAndLoginResponse {}
@@ -20,7 +21,7 @@ const signupController: Controller<ISignupRequestBody, ISignupResponseBody> = as
 
     await mailService.sendActivationMail(newUser.email, newUser.id);
 
-    res.cookie("refreshToken", newUser.refreshToken, { maxAge: 1000 * 60 * 60 * 24 * 30, httpOnly: true });
+    setRefreshTokenCookie(res, newUser.refreshToken);
 
     return res.json(newUser);
 };

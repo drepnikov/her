@@ -7,11 +7,7 @@
             "isActivated": true
         }
     },
-    "tokens": {
-        "44d41c6a-cfe7-47a4-8e7a-3749f5880cc2": {
-            "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImQudi5yZXBuaWtvdkBnbWFpbC5jb20iLCJpc0FjdGl2YXRlZCI6dHJ1ZSwiaWQiOiI0NGQ0MWM2YS1jZmU3LTQ3YTQtOGU3YS0zNzQ5ZjU4ODBjYzIiLCJpYXQiOjE2NTA5MDI5MzIsImV4cCI6MTY1MzQ5NDkzMn0.tBCd0dIk3SSn9S2D11Rup8Keqoc4-Qvr3jM3QanqGIs"
-        }
-    },
+    "tokens": {},
     "emails": {
         "d.v.repnikov@gmail.com": "44d41c6a-cfe7-47a4-8e7a-3749f5880cc2"
     }

@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import { database } from "./Database";
 import { IUser } from "./User";
+import { CustomError } from "../lib/CustomError";
 
 export interface IToken {
     accessToken: string;
@@ -31,6 +32,16 @@ class TokenService {
 
         //todo: нах?
         return refreshToken;
+    }
+
+    async deleteRefreshToken(userId: string) {
+        const data = await database.getAllData();
+
+        if (!(userId in data.tokens)) throw CustomError.BadRequest(`Не найдены сессии для ${userId}`);
+
+        delete data.tokens[userId];
+
+        database.updateAllData(data);
     }
 }
 
