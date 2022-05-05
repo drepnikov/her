@@ -106,6 +106,34 @@ class UserService {
 
         return "";
     }
+
+    async refreshSession(refreshToken: string): Promise<IRegisterAndLoginResponse> {
+        const userData = tokenService.validateRefreshToken(refreshToken);
+
+        if (!userData) {
+            throw CustomError.Unauthorized();
+        }
+
+        const refreshTokenFromDb = await tokenService.findRefreshToken(userData.id);
+
+        if (!refreshTokenFromDb) {
+            throw CustomError.Unauthorized();
+        }
+
+        const user = await this.getUserById(userData.id);
+
+        if (!user) throw CustomError.BadRequest("Пользователь с таким id не найден");
+
+        const tokens = tokenService.generateTokens({
+            email: user.email,
+            isActivated: user.isActivated,
+            id: user.id,
+        });
+
+        await tokenService.saveRefreshToken(user.id, tokens.refreshToken);
+
+        return { ...user, ...tokens };
+    }
 }
 
 export const userService = new UserService();

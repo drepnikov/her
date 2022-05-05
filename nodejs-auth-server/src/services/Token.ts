@@ -8,8 +8,10 @@ export interface IToken {
     refreshToken: string;
 }
 
+export type JWT_PAYLOAD = Pick<IUser, "id" | "email" | "isActivated">;
+
 class TokenService {
-    generateTokens(payload: Pick<IUser, "id" | "email" | "isActivated">): IToken {
+    generateTokens(payload: JWT_PAYLOAD): IToken {
         if (!process.env.JWT_ACCESS_TEST_SECRET_KEY || !process.env.JWT_REFRESH_TEST_SECRET_KEY) {
             throw new Error("Внутренняя ошибка! Секретные ключи для генерации токенов не указаны");
         }
@@ -42,6 +44,22 @@ class TokenService {
         delete data.tokens[userId];
 
         database.updateAllData(data);
+    }
+
+    async findRefreshToken(userId: string) {
+        const data = await database.getAllData();
+
+        return data.tokens[userId];
+    }
+
+    validateRefreshToken(token: string): JWT_PAYLOAD | null {
+        try {
+            const userData = jwt.verify(token, process.env.JWT_REFRESH_TEST_SECRET_KEY as string);
+
+            return userData as JWT_PAYLOAD;
+        } catch (e) {
+            return null;
+        }
     }
 }
 
